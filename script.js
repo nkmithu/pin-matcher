@@ -1,13 +1,9 @@
-// Step-1 : Hide pin match and don't match lines by default.
-// Step-2 : Generate random number onClick generate pin.
-// Step-3: Show input number onclick number's.
-// Step-4: check if pin code and input numbers are match or not onClick submit button. if match show pin matched, if don't show pin didn't match.
 
-// Step-5: Clear one by one onClick backspace button.
-//Step-6: Clear all onclick clear button.
-//step-7: show how many tries left onclick submit.
+// Disable Submit Button on window load
+window.onload = (event) => {
+    submitBtn.disabled = true;
+};
 
-// Generate random number onClick generate pin.
 
 // varriables used
 const notifyMatched = document.getElementById("notify-matched");
@@ -17,10 +13,19 @@ const submitBtn = document.getElementById("submitBtn");
 const number = document.getElementsByClassName("number");
 const operator = document.getElementsByClassName("operator");
 
-// generate 4 digit numbers
+// generate 4 digit Random numbers
 function getRandomInt() {
     return Math.floor(1000 + Math.random() * 9000);
 }
+
+//  set Random Number to input field and enable Submit Button
+
+generateBtn.addEventListener("click", function () {
+    printPinInput(getRandomInt());
+    submitBtn.disabled = false;
+})
+
+
 //get pin Input 
 function getPinInput() {
     return document.getElementById("pinInput").value;
@@ -69,14 +74,8 @@ function ifMacthOrNot() {
     }
 }
 
-//  set Random Number to input field
 
-generateBtn.addEventListener("click", function () {
-    printPinInput(getRandomInt());
-})
-
-
-// get and set Number onclick
+// get output and set Numbers on output
 
 for (let i = 0; i < number.length; i++) {
     number[i].addEventListener('click', function () {
@@ -110,3 +109,5 @@ for (let i = 0; i < operator.length; i++) {
 submitBtn.addEventListener("click", function () {
     ifMacthOrNot();
 })
+
+
